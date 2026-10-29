@@ -42,3 +42,39 @@ bool EstaNaArvore(NodePtr node, int x)
     }
     return verify;
 }
+
+bool Insere(NodePtr &node, int x)
+{
+    bool verify = false;
+    if (Vazia(node) == true)
+    {
+        node = new Node;
+        node->Info = x;
+        node->Dir = nullptr;
+        node->Esq = nullptr;
+        verify = true;
+        
+    }
+    else if (node->Info == x)
+    {
+        return verify;
+    }
+    else
+    {
+        if (node->Info > x)
+        {
+            verify = Insere(node->Esq, x);
+        }
+        else if (node->Info < x)
+        {
+           verify = Insere(node->Dir, x);
+        }
+        else
+        {
+            return verify;
+        }
+    }
+    return verify;
+}
+
+
